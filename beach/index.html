@@ -4,14 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Beach Barbecue Invitation</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            background: url('pixel.gif') center center / cover no-repeat;
+            background-color: #0072ff;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -183,26 +184,6 @@
             z-index: 10;
         }
 
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: linear-gradient(45deg,
-                    transparent 30%,
-                    rgba(255, 255, 255, 0.5) 50%,
-                    transparent 70%);
-            animation: shimmer 3s infinite;
-            pointer-events: none;
-        }
-
-        .card:hover {
-            animation: cardEntrance 0.8s ease-out, floatingHover 2s ease-in-out infinite, pulse 1.5s ease-in-out infinite;
-        }
-
         @keyframes cardEntrance {
             0% {
                 opacity: 0;
@@ -268,16 +249,13 @@
         .card h1 {
             margin: 0;
             font-size: 22px;
-            animation: textFadeIn 1s ease-out 0.3s both;
-            position: relative;
-            z-index: 1;
+            color: white;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.7);
         }
 
         .card p {
-            color: #555;
-            animation: textFadeIn 1s ease-out 0.5s both;
-            position: relative;
-            z-index: 1;
+            color: white;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.7);
         }
 
         @keyframes textFadeIn {
@@ -305,7 +283,8 @@
         }
 
         .modal-content {
-            background: #fff;
+            background: url('pixel.gif') center center / cover no-repeat;
+            background-color: #1a1a2e;
             border-radius: 16px;
             max-width: 500px;
             width: 100%;
@@ -316,6 +295,7 @@
             overflow-y: auto;
             overflow-x: hidden;
             scroll-behavior: smooth;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.15), 0 10px 40px rgba(0,0,0,0.5);
         }
 
         .modal-content::-webkit-scrollbar {
@@ -323,7 +303,7 @@
         }
 
         .modal-content::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: rgba(255,255,255,0.15);
             border-radius: 10px;
         }
 
@@ -358,16 +338,33 @@
 
         .modal-content h2 {
             text-align: center;
+            color: #fff;
+            text-shadow: 0 2px 6px rgba(0,0,0,1), 0 0 20px rgba(0,0,0,0.6);
+            font-weight: bold;
         }
 
         .modal-content p {
             margin: 8px 0;
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0,0,0,1), 0 0 12px rgba(0,0,0,0.5);
+            line-height: 1.5;
+        }
+
+        .modal-content strong {
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0,0,0,1);
+        }
+
+        .modal-content .close {
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0,0,0,1);
+            font-weight: bold;
         }
 
         .form-section {
             margin-top: 25px;
             padding-top: 25px;
-            border-top: 2px solid #e0e0e0;
+            border-top: 2px solid rgba(255,255,255,0.25);
         }
 
         .form-group {
@@ -376,27 +373,38 @@
 
         .form-group label {
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             font-weight: bold;
-            color: #333;
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0,0,0,1), 0 0 8px rgba(0,0,0,0.6);
+            font-size: 15px;
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 10px;
-            border: 2px solid #ddd;
+            padding: 12px 14px;
+            border: 2px solid rgba(255,255,255,0.6);
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 16px;
             font-family: Arial, sans-serif;
             box-sizing: border-box;
-            transition: border-color 0.3s;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            background: #fff;
+            color: #0d3b66;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #5a7a9a;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
             border-color: #0072ff;
+            box-shadow: 0 2px 12px rgba(0,114,255,0.4);
         }
 
         .form-group textarea {
@@ -434,7 +442,7 @@
         .contributions-list {
             margin-top: 20px;
             padding-top: 20px;
-            border-top: 2px solid #e0e0e0;
+            border-top: 2px solid rgba(255,255,255,0.25);
         }
 
         #contributionsContainer {
@@ -449,7 +457,7 @@
         }
 
         #contributionsContainer::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: rgba(255,255,255,0.15);
             border-radius: 10px;
         }
 
@@ -464,42 +472,48 @@
 
         .contributions-list h3 {
             margin-bottom: 15px;
-            color: #333;
+            color: #fff;
+            text-shadow: 0 1px 4px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,0.5);
         }
 
         .contribution-item {
-            background: #f5f5f5;
-            padding: 12px;
+            background: rgba(255,255,255,0.92);
+            padding: 14px;
             margin-bottom: 10px;
             border-radius: 8px;
             border-left: 4px solid #0072ff;
             position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
         }
 
         .contribution-item strong {
-            color: #0072ff;
+            color: #0d3b66;
             display: block;
-            margin-bottom: 5px;
+            margin-bottom: 6px;
+            font-size: 15px;
         }
 
         .contribution-item span {
-            color: #555;
+            color: #1e4d6b;
             display: block;
             margin-bottom: 8px;
+            line-height: 1.4;
         }
 
         .qr-section {
             text-align: center;
             margin: 20px 0;
             padding: 15px;
-            background: #f8f9fa;
+            background: rgba(255,255,255,0.2);
             border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.35);
         }
 
         .qr-section h3 {
             margin: 0 0 10px 0;
-            color: #333;
+            color: #fff;
             font-size: 16px;
+            text-shadow: 0 1px 4px rgba(0,0,0,1), 0 0 10px rgba(0,0,0,0.5);
         }
 
         .qr-code {
@@ -637,7 +651,7 @@
 
         .music-label {
             font-size: 14px;
-            color: #333;
+            color: #0d3b66;
             font-weight: bold;
         }
 
@@ -710,6 +724,7 @@
         .edit-btn {
             background: #28a745;
             color: white;
+            font-weight: 600;
         }
 
         .edit-btn:hover {
@@ -721,6 +736,7 @@
         .delete-btn {
             background: #dc3545;
             color: white;
+            font-weight: 600;
         }
 
         .delete-btn:hover {
@@ -729,19 +745,150 @@
             box-shadow: 0 2px 5px rgba(220, 53, 69, 0.3);
         }
 
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 30px;
-            text-align: center;
-            width: 300px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+        .card-wrapper {
+            display: inline-block;
+            padding: 28px;
+            background: url('coin.gif') center center / contain no-repeat;
+            background-color: transparent;
+            border-radius: 44px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
             animation: cardEntrance 0.8s ease-out, floating 3s ease-in-out infinite;
+            cursor: pointer;
+            z-index: 10;
+            position: relative;
+            min-width: 640px;
+            min-height: 640px;
+        }
+
+        .card {
+            background: transparent;
+            border-radius: 24px;
+            padding: 24px;
+            text-align: center;
+            width: 584px;
+            min-height: 584px;
+            cursor: pointer;
+            transition: transform 0.3s;
             position: relative;
             overflow: hidden;
             z-index: 10;
+        }
+
+        .card h1, .card p {
+            color: white;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+        }
+
+        /* Phone / small screen */
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+                box-sizing: border-box;
+                overflow-x: hidden;
+            }
+
+            .card-wrapper {
+                min-width: 0;
+                width: min(92vw, 340px);
+                min-height: min(92vw, 340px);
+                padding: 18px;
+                border-radius: 28px;
+            }
+
+            .card {
+                width: 100%;
+                min-height: 0;
+                height: min(92vw, 304px);
+                padding: 16px;
+                border-radius: 18px;
+                box-sizing: border-box;
+            }
+
+            .modal {
+                padding: 10px;
+                align-items: flex-start;
+                padding-top: 20px;
+                overflow-y: auto;
+            }
+
+            .modal-content {
+                max-width: 100%;
+                width: 100%;
+                max-height: calc(100vh - 40px);
+                padding: 20px 16px 24px;
+                margin: auto;
+            }
+
+            .modal-content h2 {
+                font-size: 1.35rem;
+            }
+
+            .modal-content p {
+                font-size: 0.95rem;
+            }
+
+            .form-group input,
+            .form-group textarea {
+                padding: 12px 14px;
+                font-size: 16px;
+            }
+
+            .form-section,
+            .contributions-list {
+                margin-top: 18px;
+                padding-top: 18px;
+            }
+
+            .contribution-item {
+                padding: 12px;
+            }
+
+            .edit-btn, .delete-btn {
+                padding: 8px 14px;
+                font-size: 13px;
+            }
+
+            .qr-section {
+                padding: 12px;
+            }
+
+            .qr-code {
+                max-width: 180px;
+            }
+
+            .close {
+                top: 8px;
+                right: 12px;
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card-wrapper {
+                width: min(96vw, 320px);
+                min-height: min(96vw, 320px);
+                padding: 14px;
+                border-radius: 24px;
+            }
+
+            .card {
+                height: min(96vw, 292px);
+                padding: 12px;
+                border-radius: 16px;
+            }
+
+            .modal-content {
+                padding: 16px 12px 20px;
+            }
+
+            .modal-content h2 {
+                font-size: 1.2rem;
+            }
+
+            .submit-btn {
+                padding: 14px 20px;
+                font-size: 15px;
+            }
         }
     </style>
 </head>
@@ -791,9 +938,8 @@
         </audio>
     </div>
 
-    <div class="card" onclick="openInvite()">
-        <h1>🌴🔥 Beach BBQ Party 🔥🌴</h1>
-        <p>Tap to view invitation</p>
+    <div class="card-wrapper" onclick="openInvite()">
+        <div class="card"></div>
     </div>
 
     <div class="modal" id="inviteModal">
@@ -806,7 +952,7 @@
             <p>Sunset skies, ocean breeze, and sizzling BBQ — let’s unwind beach-style!</p>
 
             <p>📅 <strong>Day:</strong> Saturday</p>
-            <p>🗓️ <strong>Date:</strong> 17 January 2026</p>
+            <p>🗓️ <strong>Date:</strong> 28 Februari 2026</p>
             <p>⏰ <strong>Time:</strong> 2:30 PM – 7:00 PM</p>
             <p>📍 <strong>Place:</strong> Luak Esplanade</p>
 
@@ -1004,7 +1150,7 @@
             container.innerHTML = "";
             
             if (contributions.length === 0) {
-                container.innerHTML = "<p style='text-align: center; color: #999; padding: 20px;'>No contributions yet. Be the first to add one! 🎉</p>";
+                container.innerHTML = "<p style='text-align: center; color: #0d3b66; padding: 20px; background: rgba(255,255,255,0.92); border-radius: 8px; margin: 0; box-shadow: 0 2px 8px rgba(0,0,0,0.2);'>No contributions yet. Be the first to add one! 🎉</p>";
                 return;
             }
             
